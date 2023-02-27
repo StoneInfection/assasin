@@ -1,6 +1,5 @@
 -- player.script
 
--- these are the tweaks for the mechanics, feel free to change them for a different feeling
 -- the acceleration to move right/left
 local move_acceleration = 3500
 -- acceleration factor to use when air-borne

@@ -70,8 +70,8 @@ local function play_animation(self, anim)
 end
 
 local function squish()
-	go.animate("visuals", "scale.x", go.PLAYBACK_ONCE_PINGPONG, 0.8, go.EASING_INOUTQUAD, 0.6)
-	go.animate("visuals", "scale.y", go.PLAYBACK_ONCE_PINGPONG, 1.2, go.EASING_INOUTQUAD, 0.6)
+	go.animate("Player", "scale.x", go.PLAYBACK_ONCE_PINGPONG, 0.8, go.EASING_INOUTQUAD, 0.6)
+	go.animate("Player", "scale.y", go.PLAYBACK_ONCE_PINGPONG, 1.2, go.EASING_INOUTQUAD, 0.6)
 end
 
 local function update_animations(self)
@@ -227,7 +227,7 @@ local function jump(self)
 		self.double_jump = true
 	end
 	-- add some particles 
-	particlefx.play("#jump")
+	-- particlefx.play("#Jump")
 end
 
 local function abort_jump(self)

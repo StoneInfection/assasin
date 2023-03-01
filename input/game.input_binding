@@ -10,6 +10,10 @@ key_trigger {
   input: KEY_SPACE
   action: "Jump"
 }
+key_trigger {
+  input: KEY_X
+  action: "Attack"
+}
 mouse_trigger {
   input: MOUSE_BUTTON_1
   action: "touch"

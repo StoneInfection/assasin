@@ -24,7 +24,6 @@ local ENEMY = hash("enemy")
 local LEFT = hash("Left")
 local RIGHT = hash("Right")
 local JUMP = hash("Jump")
-local ATTACK = hash("Attack")
 
 local ANIM_WALK = hash("Run")
 local ANIM_IDLE = hash("Idle")
@@ -271,7 +270,7 @@ local function fire_knife(self)
 	end)
 end
 
-local function fire(self)
+local function anim_attack(self)
 	play_animation(self, ANIM_ATTACK)
 end
 
@@ -286,7 +285,7 @@ function on_input(self, action_id, action)
 		elseif action.released then
 			abort_jump(self)
 		end
-	elseif action_id == ATTACK then
-		fire(self)
+	elseif action_id == ANIM_ATTACK then
+		anim_attack(self)
 	end
 end

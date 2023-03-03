@@ -11,7 +11,7 @@ key_trigger {
   action: "Jump"
 }
 key_trigger {
-  input: KEY_X
+  input: KEY_E
   action: "Attack"
 }
 mouse_trigger {

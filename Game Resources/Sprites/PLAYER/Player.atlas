@@ -179,7 +179,7 @@ animations {
   flip_vertical: 0
 }
 animations {
-  id: "Attack"
+  id: "ANIMAttack"
   images {
     image: "/Game Resources/Sprites/PLAYER/Attack/attack-A1.png"
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF

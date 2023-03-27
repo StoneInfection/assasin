@@ -1,0 +1,4 @@
+tile_set: "/Game Resources/MOB/mob.atlas"
+default_animation: "New Animation"
+material: "/builtins/materials/sprite.material"
+blend_mode: BLEND_MODE_ALPHA

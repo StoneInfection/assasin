@@ -1,9 +1,9 @@
 components {
-  id: "Player"
-  component: "/Game Resources/Sprites/PLAYER/Player.sprite"
+  id: "mob"
+  component: "/Game Resources/MOB/mob.sprite"
   position {
     x: 0.0
-    y: 32.0
+    y: 0.0
     z: 0.0
   }
   rotation {
@@ -14,8 +14,8 @@ components {
   }
 }
 components {
-  id: "PlayerScript"
-  component: "/Game Resources/Sprites/PLAYER/PlayerScript.script"
+  id: "mob1"
+  component: "/Game Resources/MOB/mob.script"
   position {
     x: 0.0
     y: 0.0
@@ -29,22 +29,21 @@ components {
   }
 }
 embedded_components {
-  id: "player"
+  id: "Mob"
   type: "collisionobject"
   data: "collision_shape: \"/Game Resources/Environment/Level1.tilemap\"\n"
-  "type: COLLISION_OBJECT_TYPE_KINEMATIC\n"
-  "mass: 0.0\n"
+  "type: COLLISION_OBJECT_TYPE_DYNAMIC\n"
+  "mass: 10.0\n"
   "friction: 0.1\n"
   "restitution: 0.5\n"
-  "group: \"player\"\n"
+  "group: \"mob\"\n"
   "mask: \"ground\"\n"
-  "mask: \"mob\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
   "    position {\n"
-  "      x: 0.0\n"
-  "      y: 31.0\n"
+  "      x: -1.0\n"
+  "      y: -10.0\n"
   "      z: 0.0\n"
   "    }\n"
   "    rotation {\n"
@@ -56,9 +55,9 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 12.0725\n"
-  "  data: 30.7185\n"
-  "  data: 10.0\n"
+  "  data: 47.865\n"
+  "  data: 102.062\n"
+  "  data: 21.4\n"
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"

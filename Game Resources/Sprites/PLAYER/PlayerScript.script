@@ -43,12 +43,6 @@ function init(self)
 	self.previous_state = nil 
 end 
 
--- function endofanimation(self) 
--- 	if self.anim ~= anim_attack then 
--- 		self.isAttacking = false 
--- 	end 
--- end 
-
 local function play_animation(self, anim) 
 	if self.anim ~= anim and anim ~= nil then 
 		sprite.play_flipbook("#Player", anim) 

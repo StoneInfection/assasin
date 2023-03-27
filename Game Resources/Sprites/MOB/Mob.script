@@ -1,0 +1,36 @@
+local move_acceleration = 3500 
+
+local msg_contact_point_response = hash("contact_point_response") 
+local msg_animation_done = hash("animation_done") 
+local group_obstacle = hash("ground") 
+
+function init(self) 
+	msg.post(".", "acquire_input_focus") 
+
+	self.velocity = vmath.vector3(0, 0, 0) 
+	self.correction = vmath.vector3() 
+	self.ground_contact = false 
+	self.move_input = 0 
+end 
+
+local function handle_obstacle_contact(self, normal, distance) 
+	local proj = vmath.dot(self.correction, normal) 
+	local comp = (distance - proj) * normal 
+	self.correction = self.correction + comp 
+	go.set_position(go.get_position() + comp) 
+	if normal.y > 0.7 then 
+		self.ground_contact = true 
+	end 
+	proj = vmath.dot(self.velocity, normal) 
+	if proj < 0 then 
+		self.velocity = self.velocity - proj * normal 
+	end 
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == msg_contact_point_response then 
+		if message.group == group_obstacle then 
+			handle_obstacle_contact(self, message.normal, message.distance) 
+		end 
+	end 
+end 

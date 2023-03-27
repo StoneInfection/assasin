@@ -1,4 +1,5 @@
 local move_acceleration = 3500 
+local gravity = -1000 
 
 local msg_contact_point_response = hash("contact_point_response") 
 local msg_animation_done = hash("animation_done") 
@@ -11,6 +12,36 @@ function init(self)
 	self.correction = vmath.vector3() 
 	self.ground_contact = false 
 	self.move_input = 0 
+end 
+
+function update(self, dt) 
+	local speed_diff = self.velocity.x 
+	local acceleration = vmath.vector3(0, gravity, 0) 
+	if speed_diff ~= 0 then 
+		if speed_diff < 0 then 
+			acceleration.x = -move_acceleration 
+		else 
+			acceleration.x = move_acceleration 
+		end 
+		if not self.ground_contact then 
+			acceleration.x = 5000 * acceleration.x 
+		end 
+	end 
+	local dv = acceleration * dt 
+	if math.abs(dv.x) > math.abs(speed_diff) then 
+		dv.x = speed_diff 
+	end 
+	local v0 = self.velocity 
+	self.velocity = self.velocity + dv 
+	local dp = (v0 + self.velocity) * dt * 0.5 
+
+
+	go.set_position(go.get_position() + dp) 
+
+	self.correction = vmath.vector3() 
+	self.move_input = 0 
+	self.ground_contact = false 
+
 end 
 
 local function handle_obstacle_contact(self, normal, distance) 
@@ -33,4 +64,9 @@ function on_message(self, message_id, message, sender)
 			handle_obstacle_contact(self, message.normal, message.distance) 
 		end 
 	end 
+	if message.group == hash("PlayerAttack") and massege.id == hash("isAttack") then 
+		-- print(message.group)
+		print(message_id, message, sender)
+	end 
+	
 end 

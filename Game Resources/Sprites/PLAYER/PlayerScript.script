@@ -89,7 +89,7 @@ function ChangeState(self, state)
 		-- end 
 	elseif state == isAttack then 
 		if self.move_input == 0 then 
-			print('ATTACK')
+			-- print('ATTACK')
 		end
 		if not self.isAttacking then 
 			self.state = idle 
@@ -253,6 +253,7 @@ function on_input(self, action_id, action)
 		if action.pressed then 
 			self.state = isAttack
 			self.isAttacking = true  
+			msg.post("Mob", "isAttack") 
 		elseif action.released then 
 			self.isAttacking = false 
 		end 

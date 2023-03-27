@@ -20,21 +20,12 @@ instances {
     z: 1.0
   }
 }
-<<<<<<< HEAD
 collection_instances {
   id: "Mob"
   collection: "/main/Mob.collection"
   position {
     x: 709.0
     y: 283.0
-=======
-instances {
-  id: "mob"
-  prototype: "/Game Resources/MOB/mob.go"
-  position {
-    x: 681.0
-    y: 222.0
->>>>>>> 67e6153da8da797a42ac879884d89da65e3f3165
     z: 0.0
   }
   rotation {
@@ -44,15 +35,9 @@ instances {
     w: 1.0
   }
   scale3 {
-<<<<<<< HEAD
     x: 1.0
     y: 1.0
     z: 1.0
-=======
-    x: 0.702
-    y: 0.707
-    z: 0.846
->>>>>>> 67e6153da8da797a42ac879884d89da65e3f3165
   }
 }
 scale_along_z: 0

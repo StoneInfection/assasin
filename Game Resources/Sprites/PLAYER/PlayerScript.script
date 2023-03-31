@@ -4,6 +4,7 @@ local max_speed = 250
 local gravity = -1000 
 local jump_takeoff_speed = 400 
 local touch_jump_timeout = 0.2 
+local hp_player = 100
 
 local msg_contact_point_response = hash("contact_point_response") 
 local msg_animation_done = hash("animation_done") 
@@ -41,6 +42,7 @@ function init(self)
 	self.touch_jump_timer = 0 
 	self.state = idle 
 	self.previous_state = nil 
+	self.enter = false
 end 
 
 local function play_animation(self, anim) 
@@ -89,7 +91,7 @@ function ChangeState(self, state)
 		-- end 
 	elseif state == isAttack then 
 		if self.move_input == 0 then 
-			-- print('ATTACK')
+			print('ATTACK')
 		end
 		if not self.isAttacking then 
 			self.state = idle 
@@ -178,6 +180,22 @@ function on_message(self, message_id, message, sender)
 			handle_obstacle_contact(self, message.normal, message.distance) 
 		end 
 	end 
+	if message_id == hash("trigger_response") then
+		if message.enter then
+			self.enter = true
+			print("OK3")
+		else
+			self.enter = false
+		end
+		-- if self.isAttacking then
+		-- -- if message.enter then
+		-- 	msg.post('/Mob/MOB#Mob', 'yahoo')
+		-- 	print("OK")
+			-- if isAttacking then
+			-- 	print("OK")
+		-- end
+		-- end
+	end
 end 
 
 local function jump(self) 
@@ -253,7 +271,9 @@ function on_input(self, action_id, action)
 		if action.pressed then 
 			self.state = isAttack
 			self.isAttacking = true  
-			msg.post("Mob", "isAttack") 
+			if self.enter == true then
+				msg.post('/Mob/MOB#Mob', 'yahoo')
+			end
 		elseif action.released then 
 			self.isAttacking = false 
 		end 

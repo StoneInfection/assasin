@@ -1,6 +1,7 @@
 local move_acceleration = 3500 
 local gravity = -1000 
 
+
 local msg_contact_point_response = hash("contact_point_response") 
 local msg_animation_done = hash("animation_done") 
 local group_obstacle = hash("ground") 
@@ -12,6 +13,7 @@ function init(self)
 	self.correction = vmath.vector3() 
 	self.ground_contact = false 
 	self.move_input = 0 
+	self.hp_mob = 100
 end 
 
 function update(self, dt) 
@@ -64,9 +66,21 @@ function on_message(self, message_id, message, sender)
 			handle_obstacle_contact(self, message.normal, message.distance) 
 		end 
 	end 
-	if message.group == hash("PlayerAttack") and massege.id == hash("isAttack") then 
-		-- print(message.group)
-		print(message_id, message, sender)
-	end 
-	
+	if message_id == hash('yahoo') then  
+		self.hp_mob = self.hp_mob - 10
+		print(self.hp_mob)
+	end
+	-- if message.group == hash("PlayerAttack") and massege.id == hash("isAttack") then 
+	-- 	-- print(message.group)
+	-- 	print(message_id, message, sender)
+	-- end 
+	if message_id == hash("trigger_response") then
+		print('my2')
+		if message.enter then
+			print("OK2")
+			-- if isAttacking then
+			-- 	print("OK")
+			-- end
+		end
+	end
 end 

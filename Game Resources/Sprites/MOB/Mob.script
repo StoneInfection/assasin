@@ -69,15 +69,17 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash('yahoo') then  
 		self.hp_mob = self.hp_mob - 10
 		print(self.hp_mob)
+		if self.hp_mob == 0 then
+			go.delete()
+		end
 	end
 	-- if message.group == hash("PlayerAttack") and massege.id == hash("isAttack") then 
 	-- 	-- print(message.group)
 	-- 	print(message_id, message, sender)
 	-- end 
 	if message_id == hash("trigger_response") then
-		print('my2')
 		if message.enter then
-			print("OK2")
+			
 			-- if isAttacking then
 			-- 	print("OK")
 			-- end

@@ -14,11 +14,14 @@ function init(self)
 	self.ground_contact = false 
 	self.move_input = 0 
 	self.hp_mob = 100
+	self.damag = 3
+	-- self.crete_chance = math.random(1, 6)
 end 
 
 function update(self, dt) 
 	local speed_diff = self.velocity.x 
 	local acceleration = vmath.vector3(0, gravity, 0) 
+	
 	if speed_diff ~= 0 then 
 		if speed_diff < 0 then 
 			acceleration.x = -move_acceleration 
@@ -29,10 +32,12 @@ function update(self, dt)
 			acceleration.x = 5000 * acceleration.x 
 		end 
 	end 
+	
 	local dv = acceleration * dt 
 	if math.abs(dv.x) > math.abs(speed_diff) then 
 		dv.x = speed_diff 
 	end 
+	
 	local v0 = self.velocity 
 	self.velocity = self.velocity + dv 
 	local dp = (v0 + self.velocity) * dt * 0.5 
@@ -51,38 +56,41 @@ local function handle_obstacle_contact(self, normal, distance)
 	local comp = (distance - proj) * normal 
 	self.correction = self.correction + comp 
 	go.set_position(go.get_position() + comp) 
+	
 	if normal.y > 0.7 then 
 		self.ground_contact = true 
 	end 
 	proj = vmath.dot(self.velocity, normal) 
 	if proj < 0 then 
+		
 		self.velocity = self.velocity - proj * normal 
 	end 
 end
 
 function on_message(self, message_id, message, sender)
+	
 	if message_id == msg_contact_point_response then 
 		if message.group == group_obstacle then 
 			handle_obstacle_contact(self, message.normal, message.distance) 
 		end 
-	end 
+	end
+	
 	if message_id == hash('yahoo') then  
-		self.hp_mob = self.hp_mob - 10
+		if message_id == hash('1') then
+			self.hp_mob = self.hp_mob - 3 * math.random(3, 6)
+		else
+			self.hp_mob = self.hp_mob - 3
+		end
 		print(self.hp_mob)
-		if self.hp_mob == 0 then
+		print(message_id)
+		if self.hp_mob <= 0 then
 			go.delete()
 		end
 	end
-	-- if message.group == hash("PlayerAttack") and massege.id == hash("isAttack") then 
-	-- 	-- print(message.group)
-	-- 	print(message_id, message, sender)
-	-- end 
+	
 	if message_id == hash("trigger_response") then
 		if message.enter then
-			
-			-- if isAttacking then
-			-- 	print("OK")
-			-- end
 		end
 	end
+	
 end 

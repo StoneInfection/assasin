@@ -393,12 +393,12 @@ convex_hulls {
 convex_hulls {
   index: 286
   count: 9
-  collision_group: ""
+  collision_group: "ship"
 }
 convex_hulls {
   index: 295
   count: 8
-  collision_group: ""
+  collision_group: "ship"
 }
 convex_hulls {
   index: 303
@@ -448,12 +448,12 @@ convex_hulls {
 convex_hulls {
   index: 341
   count: 8
-  collision_group: ""
+  collision_group: "ship"
 }
 convex_hulls {
   index: 349
   count: 8
-  collision_group: ""
+  collision_group: "ship"
 }
 convex_hulls {
   index: 357
@@ -666,6 +666,7 @@ convex_hulls {
   collision_group: ""
 }
 collision_groups: "ground"
+collision_groups: "ship"
 animations {
   id: "anim"
   start_tile: 1

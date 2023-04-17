@@ -15,7 +15,7 @@ function init(self)
 	self.move_input = 0 
 	self.hp_mob = 100
 	self.damag = 3
-	-- self.crete_chance = math.random(1, 6)
+	self.crete_chance = math.random(1, 6)
 end 
 
 function update(self, dt) 
@@ -49,6 +49,9 @@ function update(self, dt)
 	self.move_input = 0 
 	self.ground_contact = false 
 
+	if self.hp_mob <= 0 then
+		go.delete()
+	end
 end 
 
 local function handle_obstacle_contact(self, normal, distance) 
@@ -75,19 +78,14 @@ function on_message(self, message_id, message, sender)
 		end 
 	end
 	
-	if message_id == hash('yahoo') then  
-		if message_id == hash('1') then
-			self.hp_mob = self.hp_mob - 3 * math.random(3, 6)
-		else
-			self.hp_mob = self.hp_mob - 3
-		end
-		print(self.hp_mob)
-		print(message_id)
-		if self.hp_mob <= 0 then
-			go.delete()
-		end
+	-- if message_id == hash('yahoo') then  
+	if message_id == hash('1') then
+		self.hp_mob = self.hp_mob - (3 + math.random(3, 6))
+	elseif message_id == hash('2') then
+		self.hp_mob = self.hp_mob - 3
 	end
-	
+	-- end
+	print(self.hp_mob)
 	if message_id == hash("trigger_response") then
 		if message.enter then
 		end

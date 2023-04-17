@@ -8,6 +8,7 @@ local hp_player = 100
 local msg_contact_point_response = hash("contact_point_response")
 local msg_animation_done = hash("animation_done")
 local group_obstacle = hash("ground")
+local ship = hash("ship")
 
 local anim_run = hash("Run")
 local anim_idle = hash("Idle")

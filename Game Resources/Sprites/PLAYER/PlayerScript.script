@@ -3,7 +3,7 @@ local air_acceleration_factor = 0.8
 local max_speed = 250
 local gravity = -1000
 local jump_takeoff_speed = 400
-local hp_player = 100
+
 
 local msg_contact_point_response = hash("contact_point_response")
 local msg_animation_done = hash("animation_done")
@@ -32,6 +32,7 @@ function init(self)
     self.state = idle
     self.previous_state = nil
     self.enter = false
+    self.hp_player = 100
 end
 
 local function play_animation(self, anim)
@@ -178,6 +179,13 @@ function on_message(self, message_id, message, sender)
     if message_id == msg_contact_point_response then
         if message.group == group_obstacle then
             handle_obstacle_contact(self, message.normal, message.distance)
+        end
+    end
+    
+    if message_id == msg_contact_point_response then
+        if message.ship == ship then
+            self.hp_player =  self.hp_player - 10
+            print(self.hp_player)
         end
     end
     

@@ -213,6 +213,61 @@ animations {
   flip_horizontal: 0
   flip_vertical: 0
 }
+animations {
+  id: "lifebar"
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 3.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 4.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 5.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 6.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 7.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 8.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 9.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 10.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 11.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/Game Resources/Sprites/PLAYER/lifebar/blood 12.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_NONE
+  fps: 6
+  flip_horizontal: 0
+  flip_vertical: 0
+}
 margin: 0
 extrude_borders: 2
 inner_padding: 0

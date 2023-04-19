@@ -33,6 +33,8 @@ function init(self)
     self.previous_state = nil
     self.enter = false
     self.hp_player = 100
+
+    self.isTimer = false
 end
 
 local function play_animation(self, anim)
@@ -174,20 +176,35 @@ local function abort_jump(self)
     
 end
 
+local function call_damage_charecter(self, handle, time_elapsed)
+    self.hp_player =  self.hp_player - 1
+    print(self.hp_player)
+end
+
 function on_message(self, message_id, message, sender)
     
     if message_id == msg_contact_point_response then
         if message.group == group_obstacle then
+            print(group_obstacle)
             handle_obstacle_contact(self, message.normal, message.distance)
+            -- timer.cancel(self.handle_timer)
+            -- self.isTimer = false
+        elseif message.group == ship then
+            print(message.enter)
+            if self.isTimer == false then
+                self.isTimer = true
+                self.handle_timer = timer.delay(1, true, call_damage_charecter)
+            end
+            print('Ship')
         end
     end
     
-    if message_id == msg_contact_point_response then
-        if message.ship == ship then
-            self.hp_player =  self.hp_player - 10
-            print(self.hp_player)
-        end
-    end
+    -- if message_id == msg_contact_point_response then
+    --     if message.ship == ship then
+    --         self.hp_player =  self.hp_player - 10
+    --         print(self.hp_player)
+    --     end
+    -- end
     
     if message_id == hash("trigger_response") then
         if message.enter then

@@ -1,15 +1,26 @@
 local set_health = hash("set_health")
 
+local function play_anim(self)
+
+	sprite.play_flipbook("#lifebar", hash("lifebar"))
+
+end
 
 function on_message(self, message_id, message, sender, health, max_health)
 
 	if message_id == set_health then
-		print(set_health)
 		self.max_health = message.max_health
 		self.health = message.health
 		self.damage_ship = message.damage_ship
 		self.percentage_hp = self.health * 100 / self.max_health
-		
-		print(self.health)
+
+		num = math.ceil(self.percentage_hp)
+		if math.fmod(num, 10) == 0 then
+			print(num, 'a', self.percentage_hp)
+			play_anim(self)
+		end
+		print(num, 'b', self.percentage_hp)
 	end
 end
+
+

@@ -1,0 +1,15 @@
+local set_health = hash("set_health")
+
+
+function on_message(self, message_id, message, sender, health, max_health)
+
+	if message_id == set_health then
+		print(set_health)
+		self.max_health = message.max_health
+		self.health = message.health
+		self.damage_ship = message.damage_ship
+		self.percentage_hp = self.health * 100 / self.max_health
+		
+		print(self.health)
+	end
+end

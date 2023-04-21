@@ -177,7 +177,12 @@ local function abort_jump(self)
 end
 
 local function call_damage_charecter(self, handle, time_elapsed)
-    self.hp_player =  self.hp_player - 1
+    self.damage_ship = 1
+    self.hp_player =  self.hp_player - self.damage_ship
+    if self.hp_player == 0 then
+        go.delete()
+    end
+    msg.post("/lifebar#lifebar", "set_health", {health = self.hp_player, max_health = 100, damage_ship = self.damage_ship})
     print(self.hp_player)
 end
 
@@ -185,10 +190,10 @@ function on_message(self, message_id, message, sender)
     
     if message_id == msg_contact_point_response then
         if message.group == group_obstacle then
-            print(group_obstacle)
+            --print(group_obstacle)
             handle_obstacle_contact(self, message.normal, message.distance)
-            -- timer.cancel(self.handle_timer)
-            -- self.isTimer = false
+            --timer.cancel(self.handle_timer)
+            --self.isTimer = false
         elseif message.group == ship then
             print(message.enter)
             if self.isTimer == false then
@@ -254,5 +259,4 @@ function on_input(self, action_id, action)
             self.isAttacking = false
         end
     end
-    
 end

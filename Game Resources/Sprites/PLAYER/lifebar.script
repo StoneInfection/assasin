@@ -1,9 +1,9 @@
 local set_health = hash("set_health")
 
 local function play_anim(self)
-
+	go.set(".", "position.y", 200)
 	sprite.play_flipbook("#lifebar", hash("lifebar"))
-
+	go.animate(".", "position.y", go.PLAYBACK_LOOP_PINGPONG, 100, go.EASING_OUTBOUNCE, 2)
 end
 
 function on_message(self, message_id, message, sender, health, max_health)

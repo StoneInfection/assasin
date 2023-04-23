@@ -33,7 +33,8 @@ function init(self)
     self.previous_state = nil
     self.enter = false
     self.hp_player = 100
-
+    --d  fd 
+    -- sfgfsdfgsdf
     self.isTimer = false
 end
 

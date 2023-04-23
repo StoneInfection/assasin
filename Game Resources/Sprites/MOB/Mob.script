@@ -85,7 +85,7 @@ function on_message(self, message_id, message, sender)
 		self.hp_mob = self.hp_mob - 3
 	end
 	-- end
-	-- print(self.hp_mob)
+	print(self.hp_mob)
 	if message_id == hash("trigger_response") then
 		if message.enter then
 		end

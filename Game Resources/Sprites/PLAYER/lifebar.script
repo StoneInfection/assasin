@@ -1,9 +1,19 @@
 local set_health = hash("set_health")
+local lifebar = hash("lifebar")
 
 local function play_anim(self)
-	go.set(".", "position.y", 200)
-	sprite.play_flipbook("#lifebar", hash("lifebar"))
-	go.animate(".", "position.y", go.PLAYBACK_LOOP_PINGPONG, 100, go.EASING_OUTBOUNCE, 2)
+	if self.anim ~= anim and anim ~= nil then
+		sprite.play_flipbook("#Player", anim)
+		self.anim = anim
+	end
+	-- sprite.play_flipbook("#Player", lifebar )
+end
+
+local function update_anim(self)
+	if math.fmod(num, 10) == 0 then
+		print(num, 'a', self.percentage_hp)
+		play_anim(self, lifebar)
+	end
 end
 
 function on_message(self, message_id, message, sender, health, max_health)
@@ -15,10 +25,7 @@ function on_message(self, message_id, message, sender, health, max_health)
 		self.percentage_hp = self.health * 100 / self.max_health
 
 		num = math.ceil(self.percentage_hp)
-		if math.fmod(num, 10) == 0 then
-			print(num, 'a', self.percentage_hp)
-			play_anim(self)
-		end
+		
 		print(num, 'b', self.percentage_hp)
 	end
 end

@@ -183,7 +183,7 @@ local function call_damage_charecter(self, handle, time_elapsed)
     if self.hp_player == 0 then
         go.delete()
     end
-    msg.post("/lifebar#lifebar", "set_health", {health = self.hp_player, max_health = 100, damage_ship = self.damage_ship})
+    msg.post("/interface#lifebar", "set_health", {health = self.hp_player, max_health = 100, damage_ship = self.damage_ship})
     -- print(self.hp_player)
 end
 

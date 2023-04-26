@@ -263,7 +263,7 @@ animations {
     image: "/Game Resources/Sprites/PLAYER/lifebar/blood 12.png"
     sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
-  playback: PLAYBACK_NONE
+  playback: PLAYBACK_LOOP_FORWARD
   fps: 6
   flip_horizontal: 0
   flip_vertical: 0
